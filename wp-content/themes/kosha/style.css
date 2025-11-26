@@ -1,0 +1,629 @@
+/*
+Theme Name: Kosha
+Theme URI: https://kosha.tollugatti.in
+Author: Kosha Team
+Author URI: https://tollugatti.in
+Description: A beautiful WordPress theme for cultural knowledge base, combining WikiHow's usability with Indian cultural aesthetics. Features step-by-step article layouts, traditional design elements, and warm color palettes inspired by Indian heritage.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: kosha
+Tags: blog, education, culture, two-columns, right-sidebar, custom-menu, featured-images, threaded-comments, translation-ready, responsive-layout
+*/
+
+/* ========================================
+   CSS Variables - Indian-Inspired Color Palette
+   ======================================== */
+:root {
+  /* Primary Colors - Inspired by Indian heritage */
+  --color-saffron: #FF9933;
+  --color-deep-saffron: #E67E22;
+  --color-terracotta: #D35400;
+  --color-vermillion: #E74C3C;
+  --color-maroon: #8B0000;
+  
+  /* Accent Colors */
+  --color-gold: #FFD700;
+  --color-amber: #FFC107;
+  --color-turmeric: #F39C12;
+  
+  /* Earth Tones */
+  --color-sandstone: #F5DEB3;
+  --color-clay: #CD853F;
+  --color-earth: #8B4513;
+  
+  /* Neutrals */
+  --color-cream: #FFF8DC;
+  --color-ivory: #FFFFF0;
+  --color-charcoal: #2C3E50;
+  --color-slate: #34495E;
+  
+  /* Gradients */
+  --gradient-sunrise: linear-gradient(135deg, var(--color-saffron) 0%, var(--color-vermillion) 100%);
+  --gradient-sunset: linear-gradient(135deg, var(--color-turmeric) 0%, var(--color-terracotta) 100%);
+  --gradient-earth: linear-gradient(135deg, var(--color-sandstone) 0%, var(--color-clay) 100%);
+  
+  /* Typography */
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* ========================================
+   Reset & Base Styles
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-charcoal);
+  background-color: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-slate);
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: 2.5rem;
+  background: var(--gradient-sunrise);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--color-terracotta);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--color-deep-saffron);
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-deep-saffron);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-terracotta);
+  text-decoration: underline;
+}
+
+/* ========================================
+   Layout
+   ======================================== */
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  width: 100%;
+}
+
+.content-area {
+  width: 100%;
+}
+
+/* Two-column layout */
+.has-sidebar .site-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .has-sidebar .site-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.site-header {
+  background: linear-gradient(135deg, var(--color-ivory) 0%, var(--color-cream) 100%);
+  border-bottom: 3px solid var(--color-saffron);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.site-title {
+  font-size: 1.75rem;
+  margin: 0;
+  background: var(--gradient-sunrise);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-description {
+  font-size: 0.875rem;
+  color: var(--color-slate);
+  margin: 0;
+}
+
+/* ========================================
+   Navigation
+   ======================================== */
+.main-navigation {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.main-navigation ul {
+  list-style: none;
+  display: flex;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding: 0;
+}
+
+.main-navigation li {
+  position: relative;
+}
+
+.main-navigation a {
+  color: var(--color-slate);
+  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  display: block;
+}
+
+.main-navigation a:hover,
+.main-navigation .current-menu-item > a {
+  background: var(--gradient-sunset);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: var(--gradient-sunrise);
+  color: white;
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform var(--transition-base);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .main-navigation ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    flex-direction: column;
+    min-width: 200px;
+  }
+  
+  .main-navigation.toggled ul {
+    display: flex;
+  }
+}
+
+/* ========================================
+   Search Form
+   ======================================== */
+.search-form {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.search-form input[type="search"] {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 2px solid var(--color-sandstone);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  transition: border-color var(--transition-base);
+}
+
+.search-form input[type="search"]:focus {
+  outline: none;
+  border-color: var(--color-saffron);
+}
+
+.search-form button {
+  background: var(--gradient-sunrise);
+  color: white;
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform var(--transition-base);
+}
+
+.search-form button:hover {
+  transform: scale(1.05);
+}
+
+/* ========================================
+   Posts & Articles
+   ======================================== */
+.article-card,
+.post {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  border-top: 4px solid var(--color-saffron);
+  transition: all var(--transition-base);
+}
+
+.article-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+.entry-header {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--color-sandstone);
+}
+
+.entry-title {
+  margin-bottom: var(--spacing-sm);
+}
+
+.entry-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.entry-title a:hover {
+  color: var(--color-deep-saffron);
+}
+
+.entry-meta {
+  font-size: 0.875rem;
+  color: var(--color-slate);
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.entry-meta span {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.entry-content {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.entry-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: var(--spacing-md) 0;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+.button,
+.wp-block-button__link,
+input[type="submit"] {
+  display: inline-block;
+  background: var(--gradient-sunrise);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: none;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.button:hover,
+.wp-block-button__link:hover,
+input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  color: white;
+}
+
+/* ========================================
+   Sidebar & Widgets
+   ======================================== */
+.widget-area {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.widget {
+  margin-bottom: var(--spacing-xl);
+}
+
+.widget:last-child {
+  margin-bottom: 0;
+}
+
+.widget-title {
+  font-size: 1.25rem;
+  color: var(--color-deep-saffron);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-sandstone);
+}
+
+.widget ul {
+  list-style: none;
+  padding: 0;
+}
+
+.widget li {
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px solid var(--color-cream);
+}
+
+.widget li:last-child {
+  border-bottom: none;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.site-footer {
+  background: linear-gradient(135deg, var(--color-slate) 0%, var(--color-charcoal) 100%);
+  color: var(--color-cream);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+}
+
+.footer-widgets {
+  max-width: 1200px;
+  margin: 0 auto var(--spacing-xl);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.footer-widget .widget-title {
+  color: var(--color-gold);
+}
+
+.footer-widget a {
+  color: var(--color-cream);
+}
+
+.footer-widget a:hover {
+  color: var(--color-saffron);
+}
+
+.site-info {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+/* ========================================
+   Decorative Elements - Indian Patterns
+   ======================================== */
+.decorative-border {
+  position: relative;
+  padding: var(--spacing-lg);
+}
+
+.decorative-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-saffron) 0px,
+    var(--color-saffron) 10px,
+    var(--color-gold) 10px,
+    var(--color-gold) 20px,
+    var(--color-vermillion) 20px,
+    var(--color-vermillion) 30px
+  );
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .site-content {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .header-inner {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.screen-reader-text:focus {
+  background-color: var(--color-ivory);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  clip: auto !important;
+  color: var(--color-charcoal);
+  display: block;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+  .site-header,
+  .site-footer,
+  .widget-area,
+  .menu-toggle {
+    display: none;
+  }
+  
+  .site-content {
+    max-width: 100%;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+}
