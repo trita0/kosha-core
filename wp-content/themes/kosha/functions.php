@@ -34,6 +34,7 @@ function kosha_setup()
     register_nav_menus(array(
         'primary' => esc_html__('Primary Menu', 'kosha'),
         'footer' => esc_html__('Footer Menu', 'kosha'),
+        'top-bar' => esc_html__('Top Bar Menu', 'kosha'),
     ));
 
     // Switch default core markup to output valid HTML5

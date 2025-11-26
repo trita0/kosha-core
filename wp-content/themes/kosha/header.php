@@ -14,6 +14,28 @@
     <div id="page" class="site">
         <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'kosha'); ?></a>
 
+        <div class="top-bar">
+            <div class="top-bar-inner">
+                <div class="top-bar-menu">
+                    <?php
+                    wp_nav_menu(
+                        array(
+                            'theme_location' => 'top-bar',
+                            'menu_id' => 'top-bar-menu',
+                            'container' => false,
+                            'fallback_cb' => false,
+                            'depth' => 1,
+                        )
+                    );
+                    ?>
+                </div>
+                <div class="top-bar-social">
+                    <!-- Social placeholders or tagline -->
+                    <span class="top-tagline"><?php esc_html_e('Preserving Cultural Heritage', 'kosha'); ?></span>
+                </div>
+            </div>
+        </div>
+
         <header id="masthead" class="site-header">
             <div class="header-inner">
                 <div class="site-branding">

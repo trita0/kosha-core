@@ -194,6 +194,54 @@ a:hover {
 }
 
 /* ========================================
+   Top Bar
+   ======================================== */
+.top-bar {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  font-size: 0.875rem;
+  padding: var(--spacing-xs) 0;
+}
+
+.top-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.top-bar-menu a {
+  color: var(--color-cream);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.top-bar-menu a:hover {
+  color: var(--color-saffron);
+}
+
+.top-bar-social {
+  color: var(--color-sandstone);
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    display: none;
+    /* Hide top bar on mobile to save space */
+  }
+}
+
+/* ========================================
    Header
    ======================================== */
 .site-header {
